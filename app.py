@@ -300,7 +300,7 @@ THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 # =====================================================
 st.markdown("""
 <style>
-/* Sembunyikan sidebar karena menu dipindahkan ke atas */
+/* Sembunyikan sidebar */
 [data-testid="stSidebar"] {
     display: none;
 }
@@ -317,27 +317,40 @@ st.markdown("""
     text-align: center;
     color: #6b7280;
     margin-top: -4px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     font-size: 15px;
 }
 
-/* Posisi radio menu di tengah */
+/* Paksa komponen radio memenuhi lebar halaman */
+div[data-testid="stRadio"] {
+    width: 100%;
+}
+
+/* Hilangkan label radio */
+div[data-testid="stRadio"] > label {
+    display: none;
+}
+
+/* Wrapper radio dibuat center */
 div[data-testid="stRadio"] > div {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 
 /* Container menu */
 div[role="radiogroup"] {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     align-items: center;
     gap: 10px;
     background: #111827;
     border-radius: 999px;
     padding: 8px 10px;
-    width: fit-content;
-    margin: 0 auto 28px auto;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 28px !important;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
@@ -352,7 +365,7 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] {
     background: #1f2937;
     border-radius: 999px;
     padding: 9px 18px;
-    min-width: 145px;
+    min-width: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -360,7 +373,7 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] {
     transition: all 0.2s ease-in-out;
 }
 
-/* Hover menu */
+/* Hover */
 div[data-testid="stRadio"] label[data-baseweb="radio"]:hover {
     background: #374151;
     transform: translateY(-1px);
@@ -385,7 +398,7 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] p {
 st.markdown("""
 <h1 class="top-title">💳 Prediksi Churn Nasabah Kartu Kredit</h1>
 <p class="top-subtitle">
-CatBoost hasil optimasi Bayesian Optimization · Threshold prediksi: <b>{:.2f}</b>
+Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma Catboost Dengan Bayesian Optimization Dan Interpretasi Model Berbasis Shapley Additive Explanations
 </p>
 """.format(THRESHOLD), unsafe_allow_html=True)
 
