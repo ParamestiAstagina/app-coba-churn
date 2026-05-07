@@ -306,16 +306,37 @@ Sistem prediksi churn menggunakan CatBoost, Bayesian Optimization, dan SHAP
 """, unsafe_allow_html=True)
 
 menu = st.radio(
-    "Navigasi",
+    "",
     [
         "Beranda",
         "Dataset",
         "Prediksi Manual",
         "Prediksi Batch CSV"
     ],
-    horizontal=True,
-    label_visibility="collapsed"
+    horizontal=True
 )
+
+st.markdown("""
+<style>
+div[role="radiogroup"] {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+div[role="radiogroup"] label {
+    background-color: #f3f4f6;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+div[role="radiogroup"] label:hover {
+    background-color: #e5e7eb;
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
