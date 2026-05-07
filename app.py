@@ -401,6 +401,7 @@ with menu_area:
             type="primary" if st.session_state.menu == "Informasi Dataset" else "secondary"
         ):
             st.session_state.menu = "Informasi Dataset"
+            st.rerun()
 
     with c3:
         if st.button(
@@ -410,6 +411,7 @@ with menu_area:
             type="primary" if st.session_state.menu == "Prediksi Manual" else "secondary"
         ):
             st.session_state.menu = "Prediksi Manual"
+            st.rerun()
 
     with c4:
         if st.button(
@@ -419,6 +421,7 @@ with menu_area:
             type="primary" if st.session_state.menu == "Prediksi Batch CSV" else "secondary"
         ):
             st.session_state.menu = "Prediksi Batch CSV"
+            st.rerun()
 
 menu = st.session_state.menu
 
