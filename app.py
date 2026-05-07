@@ -296,20 +296,106 @@ metadata = load_metadata()
 THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 
 # =====================================================
-# SIDEBAR
+# TOP NAVIGATION MENU
 # =====================================================
-st.sidebar.title("💳 Churn Prediction")
-st.sidebar.caption("CatBoost + Bayesian Optimization")
-menu = st.sidebar.radio(
+st.markdown("""
+<style>
+/* Sembunyikan sidebar karena menu dipindahkan ke atas */
+[data-testid="stSidebar"] {
+    display: none;
+}
+
+/* Judul utama */
+.top-title {
+    text-align: center;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+/* Subtitle */
+.top-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-top: -4px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* Posisi radio menu di tengah */
+div[data-testid="stRadio"] > div {
+    display: flex;
+    justify-content: center;
+}
+
+/* Container menu */
+div[role="radiogroup"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #111827;
+    border-radius: 999px;
+    padding: 8px 10px;
+    width: fit-content;
+    margin: 0 auto 28px auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Sembunyikan bulatan radio */
+div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
+    display: none;
+}
+
+/* Tampilan tombol menu */
+div[data-testid="stRadio"] label[data-baseweb="radio"] {
+    margin: 0 !important;
+    background: #1f2937;
+    border-radius: 999px;
+    padding: 9px 18px;
+    min-width: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover menu */
+div[data-testid="stRadio"] label[data-baseweb="radio"]:hover {
+    background: #374151;
+    transform: translateY(-1px);
+}
+
+/* Menu aktif */
+div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) {
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.22);
+}
+
+/* Teks menu */
+div[data-testid="stRadio"] label[data-baseweb="radio"] p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<h1 class="top-title">💳 Prediksi Churn Nasabah Kartu Kredit</h1>
+<p class="top-subtitle">
+CatBoost hasil optimasi Bayesian Optimization · Threshold prediksi: <b>{:.2f}</b>
+</p>
+""".format(THRESHOLD), unsafe_allow_html=True)
+
+menu = st.radio(
     "Menu",
     ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
     index=0,
+    horizontal=True,
+    label_visibility="collapsed"
 )
-
-st.sidebar.markdown("---")
-st.sidebar.markdown("**Model aktif**")
-st.sidebar.write("CatBoost hasil optimasi Bayesian")
-st.sidebar.write(f"Threshold prediksi: `{THRESHOLD:.2f}`")
 
 # =====================================================
 # MENU: BERANDA
