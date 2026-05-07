@@ -428,7 +428,7 @@ menu = st.session_state.menu
 # =====================================================
 # MENU: BERANDA
 # =====================================================
-if menu == "💳 Beranda":
+if menu == "Beranda":
     show_header(
         "Prediksi Churn Nasabah Kartu Kredit",
         "Sistem prediksi churn menggunakan CatBoost yang dioptimasi dengan Bayesian Optimization dan didukung interpretasi SHAP."
@@ -471,7 +471,7 @@ if menu == "💳 Beranda":
 # =====================================================
 # MENU: DATASET
 # =====================================================
-elif menu == "📊 Informasi Dataset":
+elif menu == "Informasi Dataset":
     show_header(
         "Informasi Dataset",
         "Halaman ini menampilkan dataset utama penelitian yang sudah melewati tahap preprocessing."
@@ -539,7 +539,7 @@ elif menu == "📊 Informasi Dataset":
 # =====================================================
 # MENU: PREDIKSI MANUAL
 # =====================================================
-elif menu == "🔎 Prediksi Manual":
+elif menu == "Prediksi Manual":
     show_header(
         "Prediksi Nasabah Manual",
         "Masukkan nilai karakteristik dan aktivitas nasabah untuk memperoleh hasil prediksi churn."
@@ -669,7 +669,7 @@ elif menu == "🔎 Prediksi Manual":
 # =====================================================
 # MENU: PREDIKSI BATCH CSV
 # =====================================================
-elif menu == "📁 Prediksi Batch CSV":
+elif menu == "Prediksi Batch CSV":
     show_header(
         "Prediksi Batch CSV",
         "Unggah file CSV berisi data nasabah baru untuk memprediksi banyak nasabah sekaligus."
