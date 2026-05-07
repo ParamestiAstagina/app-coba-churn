@@ -302,7 +302,7 @@ st.sidebar.title("💳 Churn Prediction")
 st.sidebar.caption("CatBoost + Bayesian Optimization")
 menu = st.sidebar.radio(
     "Menu",
-    ["Beranda", "Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
+    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
     index=0,
 )
 
@@ -335,21 +335,9 @@ if menu == "Beranda":
     <p>
     Sistem ini dirancang untuk memprediksi kemungkinan nasabah kartu kredit mengalami churn berdasarkan data karakteristik dan aktivitas nasabah.
     Model yang digunakan adalah <b>CatBoost Classifier</b> yang telah dioptimasi menggunakan <b>Bayesian Optimization</b> untuk memperoleh kombinasi hyperparameter terbaik.
-    Web ini tidak melakukan training ulang ketika digunakan, melainkan langsung memuat model terbaik yang sudah disimpan sehingga proses prediksi dapat dilakukan lebih cepat.
     </p>
     </div>
     """, unsafe_allow_html=True)
-
-    st.subheader("Alur Penggunaan Sistem")
-    a, b, c, d = st.columns(4)
-    with a:
-        st.markdown('<div class="info-card"><b>1. Dataset</b><br><span class="small-muted">Sistem membaca dataset utama yang sudah tersedia di project.</span></div>', unsafe_allow_html=True)
-    with b:
-        st.markdown('<div class="info-card"><b>2. Preprocessing</b><br><span class="small-muted">Dataset ditampilkan setelah kolom tidak relevan dihapus dan target dipetakan.</span></div>', unsafe_allow_html=True)
-    with c:
-        st.markdown('<div class="info-card"><b>3. Prediksi</b><br><span class="small-muted">User dapat mengisi data manual atau mengunggah file CSV.</span></div>', unsafe_allow_html=True)
-    with d:
-        st.markdown('<div class="info-card"><b>4. Hasil</b><br><span class="small-muted">Sistem menampilkan label prediksi, probabilitas churn, dan kategori risiko.</span></div>', unsafe_allow_html=True)
 
     st.subheader("Ringkasan Metode")
     method_df = pd.DataFrame({
@@ -369,7 +357,7 @@ if menu == "Beranda":
 # =====================================================
 # MENU: DATASET
 # =====================================================
-elif menu == "Dataset":
+elif menu == "Informasi Dataset":
     show_header(
         "Informasi Dataset",
         "Halaman ini menampilkan dataset utama penelitian yang sudah melewati tahap preprocessing."
