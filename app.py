@@ -299,9 +299,76 @@ THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 # TOP NAVIGATION MENU
 # =====================================================
 
-# =====================================================
-# JUDUL APLIKASI
-# =====================================================
+st.markdown("""
+<style>
+
+/* judul */
+.top-title {
+    text-align: center;
+    margin-bottom: 6px;
+    color: #111827;
+    font-weight: 800;
+}
+
+.top-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-top: -4px;
+    margin-bottom: 28px;
+    font-size: 15px;
+}
+
+/* tombol menu - default */
+div[data-testid="stButton"] > button[kind="secondary"] {
+    border-radius: 999px !important;
+    border: none !important;
+    background: #1e2a3d !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    min-height: 52px !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: none !important;
+}
+
+/* hover tombol biasa */
+div[data-testid="stButton"] > button[kind="secondary"]:hover {
+    background: #26344a !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* tombol aktif */
+div[data-testid="stButton"] > button[kind="primary"] {
+    border-radius: 999px !important;
+    border: none !important;
+    background: linear-gradient(90deg, #78aefb, #5a9cff) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 12px 18px !important;
+    min-height: 52px !important;
+    box-shadow:
+        inset 0 -3px 0 #ff4d5a,
+        0 0 0 2px rgba(120,174,251,0.25) !important;
+}
+
+/* hover tombol aktif */
+div[data-testid="stButton"] > button[kind="primary"]:hover {
+    background: linear-gradient(90deg, #78aefb, #5a9cff) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* hilangkan outline aneh */
+div[data-testid="stButton"] > button:focus {
+    outline: none !important;
+    box-shadow:
+        inset 0 -3px 0 #ff4d5a,
+        0 0 0 2px rgba(120,174,251,0.25) !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <h1 class="top-title">💳 Prediksi Churn Nasabah Kartu Kredit</h1>
 <p class="top-subtitle">
@@ -309,96 +376,59 @@ Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma CatBoost dengan Bayesi
 </p>
 """, unsafe_allow_html=True)
 
-
 # =====================================================
-# MENU BUTTON DI ATAS TENGAH
+# MENU BUTTON
 # =====================================================
 if "menu" not in st.session_state:
     st.session_state.menu = "Beranda"
 
-st.markdown("""
-<style>
-/* Judul */
-.top-title {
-    text-align: center;
-    margin-bottom: 6px;
-    color: #111827;
-}
+left_space, menu_area, right_space = st.columns([0.8, 5, 0.8])
 
-.top-subtitle {
-    text-align: center;
-    color: #6b7280;
-    margin-top: -4px;
-    margin-bottom: 22px;
-    font-size: 15px;
-}
+with menu_area:
+    c1, c2, c3, c4 = st.columns(4, gap="medium")
 
-/* Wrapper menu agar benar-benar di tengah */
-.menu-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 28px;
-}
+    with c1:
+        if st.button(
+            "💳 Beranda",
+            key="btn_beranda",
+            use_container_width=True,
+            type="primary" if st.session_state.menu == "Beranda" else "secondary"
+        ):
+            st.session_state.menu = "Beranda"
 
-/* Kotak hitam di belakang menu */
-.menu-box {
-    background: #111827;
-    padding: 8px 10px;
-    border-radius: 999px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
+    with c2:
+        if st.button(
+            "📊 Informasi Dataset",
+            key="btn_dataset",
+            use_container_width=True,
+            type="primary" if st.session_state.menu == "Informasi Dataset" else "secondary"
+        ):
+            st.session_state.menu = "Informasi Dataset"
 
-/* Styling button Streamlit */
-div[data-testid="stButton"] > button {
-    border-radius: 999px;
-    border: none;
-    background-color: #1f2937;
-    color: white;
-    font-weight: 600;
-    padding: 9px 18px;
-    min-width: 150px;
-    transition: all 0.2s ease-in-out;
-}
+    with c3:
+        if st.button(
+            "🔎 Prediksi Manual",
+            key="btn_manual",
+            use_container_width=True,
+            type="primary" if st.session_state.menu == "Prediksi Manual" else "secondary"
+        ):
+            st.session_state.menu = "Prediksi Manual"
 
-div[data-testid="stButton"] > button:hover {
-    background-color: #374151;
-    color: white;
-    transform: translateY(-1px);
-    border: none;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# Container tengah
-st.markdown('<div class="menu-wrapper"><div class="menu-box">', unsafe_allow_html=True)
-
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-
-with col1:
-    if st.button("Beranda", use_container_width=True):
-        st.session_state.menu = "Beranda"
-
-with col2:
-    if st.button("Informasi Dataset", use_container_width=True):
-        st.session_state.menu = "Informasi Dataset"
-
-with col3:
-    if st.button("Prediksi Manual", use_container_width=True):
-        st.session_state.menu = "Prediksi Manual"
-
-with col4:
-    if st.button("Prediksi Batch CSV", use_container_width=True):
-        st.session_state.menu = "Prediksi Batch CSV"
-
-st.markdown('</div></div>', unsafe_allow_html=True)
+    with c4:
+        if st.button(
+            "📁 Prediksi Batch CSV",
+            key="btn_batch",
+            use_container_width=True,
+            type="primary" if st.session_state.menu == "Prediksi Batch CSV" else "secondary"
+        ):
+            st.session_state.menu = "Prediksi Batch CSV"
 
 menu = st.session_state.menu
 
 # =====================================================
 # MENU: BERANDA
 # =====================================================
-if menu == "Beranda":
+if menu == "💳 Beranda":
     show_header(
         "Prediksi Churn Nasabah Kartu Kredit",
         "Sistem prediksi churn menggunakan CatBoost yang dioptimasi dengan Bayesian Optimization dan didukung interpretasi SHAP."
@@ -441,7 +471,7 @@ if menu == "Beranda":
 # =====================================================
 # MENU: DATASET
 # =====================================================
-elif menu == "Informasi Dataset":
+elif menu == "📊 Informasi Dataset":
     show_header(
         "Informasi Dataset",
         "Halaman ini menampilkan dataset utama penelitian yang sudah melewati tahap preprocessing."
@@ -509,7 +539,7 @@ elif menu == "Informasi Dataset":
 # =====================================================
 # MENU: PREDIKSI MANUAL
 # =====================================================
-elif menu == "Prediksi Manual":
+elif menu == "🔎 Prediksi Manual":
     show_header(
         "Prediksi Nasabah Manual",
         "Masukkan nilai karakteristik dan aktivitas nasabah untuk memperoleh hasil prediksi churn."
@@ -639,7 +669,7 @@ elif menu == "Prediksi Manual":
 # =====================================================
 # MENU: PREDIKSI BATCH CSV
 # =====================================================
-elif menu == "Prediksi Batch CSV":
+elif menu == "📁 Prediksi Batch CSV":
     show_header(
         "Prediksi Batch CSV",
         "Unggah file CSV berisi data nasabah baru untuk memprediksi banyak nasabah sekaligus."
