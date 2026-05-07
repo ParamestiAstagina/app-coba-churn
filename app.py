@@ -321,6 +321,19 @@ st.markdown("""
     font-size: 15px;
 }
 
+/* Paksa radio menu berada di tengah halaman */
+div[data-testid="stRadio"] {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+div[data-testid="stRadio"] > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 /* Hilangkan label radio */
 div[data-testid="stRadio"] > label {
     display: none;
@@ -335,8 +348,8 @@ div[role="radiogroup"] {
     background: #111827;
     border-radius: 999px;
     padding: 8px 10px;
-    width: fit-content;
-    margin: 0 auto 28px auto;
+    width: fit-content !important;
+    margin: 0 auto 28px auto !important;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
@@ -388,16 +401,13 @@ Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma Catboost Dengan Bayesi
 </p>
 """.format(THRESHOLD), unsafe_allow_html=True)
 
-left_col, center_col, right_col = st.columns([1, 3, 1])
-
-with center_col:
-    menu = st.radio(
-        "Menu",
-        ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
-        index=0,
-        horizontal=True,
-        label_visibility="collapsed"
-    )
+menu = st.radio(
+    "Menu",
+    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
+    index=0,
+    horizontal=True,
+    label_visibility="collapsed"
+)
 
 # =====================================================
 # MENU: BERANDA
