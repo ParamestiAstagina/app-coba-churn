@@ -298,18 +298,26 @@ THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 # =====================================================
 # SIDEBAR
 # =====================================================
-st.sidebar.title("💳 Churn Prediction")
-st.sidebar.caption("CatBoost + Bayesian Optimization")
-menu = st.sidebar.radio(
-    "Menu",
-    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
-    index=0,
+st.markdown("""
+<h1 style='text-align:center; margin-bottom: 0;'>Prediksi Churn Nasabah Kartu Kredit</h1>
+<p style='text-align:center; color: #6b7280; margin-top: 4px;'>
+Sistem prediksi churn menggunakan CatBoost, Bayesian Optimization, dan SHAP
+</p>
+""", unsafe_allow_html=True)
+
+menu = st.radio(
+    "Navigasi",
+    [
+        "Beranda",
+        "Dataset",
+        "Prediksi Manual",
+        "Prediksi Batch CSV"
+    ],
+    horizontal=True,
+    label_visibility="collapsed"
 )
 
-st.sidebar.markdown("---")
-st.sidebar.markdown("**Model aktif**")
-st.sidebar.write("CatBoost hasil optimasi Bayesian")
-st.sidebar.write(f"Threshold prediksi: `{THRESHOLD:.2f}`")
+st.markdown("---")
 
 # =====================================================
 # MENU: BERANDA
