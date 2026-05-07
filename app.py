@@ -299,20 +299,101 @@ THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 # TOP NAVIGATION MENU
 # =====================================================
 
+# =====================================================
+# JUDUL APLIKASI
+# =====================================================
 st.markdown("""
 <h1 class="top-title">💳 Prediksi Churn Nasabah Kartu Kredit</h1>
 <p class="top-subtitle">
-Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma Catboost Dengan Bayesian Optimization Dan Interpretasi Model Berbasis Shapley Additive Explanations
+Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma CatBoost dengan Bayesian Optimization dan Interpretasi Model Berbasis Shapley Additive Explanations
 </p>
-""".format(THRESHOLD), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-menu = st.radio(
-    "Menu",
-    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
-    index=0,
-    horizontal=True,
-    label_visibility="collapsed"
-)
+
+# =====================================================
+# MENU BUTTON DI ATAS TENGAH
+# =====================================================
+if "menu" not in st.session_state:
+    st.session_state.menu = "Beranda"
+
+st.markdown("""
+<style>
+/* Judul */
+.top-title {
+    text-align: center;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.top-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-top: -4px;
+    margin-bottom: 22px;
+    font-size: 15px;
+}
+
+/* Wrapper menu agar benar-benar di tengah */
+.menu-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+/* Kotak hitam di belakang menu */
+.menu-box {
+    background: #111827;
+    padding: 8px 10px;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Styling button Streamlit */
+div[data-testid="stButton"] > button {
+    border-radius: 999px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    font-weight: 600;
+    padding: 9px 18px;
+    min-width: 150px;
+    transition: all 0.2s ease-in-out;
+}
+
+div[data-testid="stButton"] > button:hover {
+    background-color: #374151;
+    color: white;
+    transform: translateY(-1px);
+    border: none;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Container tengah
+st.markdown('<div class="menu-wrapper"><div class="menu-box">', unsafe_allow_html=True)
+
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+
+with col1:
+    if st.button("Beranda", use_container_width=True):
+        st.session_state.menu = "Beranda"
+
+with col2:
+    if st.button("Informasi Dataset", use_container_width=True):
+        st.session_state.menu = "Informasi Dataset"
+
+with col3:
+    if st.button("Prediksi Manual", use_container_width=True):
+        st.session_state.menu = "Prediksi Manual"
+
+with col4:
+    if st.button("Prediksi Batch CSV", use_container_width=True):
+        st.session_state.menu = "Prediksi Batch CSV"
+
+st.markdown('</div></div>', unsafe_allow_html=True)
+
+menu = st.session_state.menu
 
 # =====================================================
 # MENU: BERANDA
