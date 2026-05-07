@@ -298,47 +298,18 @@ THRESHOLD = float(metadata.get("threshold", DEFAULT_THRESHOLD))
 # =====================================================
 # SIDEBAR
 # =====================================================
-st.markdown("""
-<h1 style='text-align:center; margin-bottom: 0;'>Prediksi Churn Nasabah Kartu Kredit</h1>
-<p style='text-align:center; color: #6b7280; margin-top: 4px;'>
-Sistem prediksi churn menggunakan CatBoost, Bayesian Optimization, dan SHAP
-</p>
-""", unsafe_allow_html=True)
-
-menu = st.radio(
-    "",
-    [
-        "Beranda",
-        "Dataset",
-        "Prediksi Manual",
-        "Prediksi Batch CSV"
-    ],
-    horizontal=True
+st.sidebar.title("💳 Churn Prediction")
+st.sidebar.caption("CatBoost + Bayesian Optimization")
+menu = st.sidebar.radio(
+    "Menu",
+    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
+    index=0,
 )
 
-st.markdown("""
-<style>
-div[role="radiogroup"] {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-div[role="radiogroup"] label {
-    background-color: #f3f4f6;
-    padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    cursor: pointer;
-}
-
-div[role="radiogroup"] label:hover {
-    background-color: #e5e7eb;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown("---")
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Model aktif**")
+st.sidebar.write("CatBoost hasil optimasi Bayesian")
+st.sidebar.write(f"Threshold prediksi: `{THRESHOLD:.2f}`")
 
 # =====================================================
 # MENU: BERANDA
