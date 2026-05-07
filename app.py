@@ -429,10 +429,6 @@ menu = st.session_state.menu
 # MENU: BERANDA
 # =====================================================
 if menu == "Beranda":
-    show_header(
-        "Prediksi Churn Nasabah Kartu Kredit",
-        "Sistem prediksi churn menggunakan CatBoost yang dioptimasi dengan Bayesian Optimization dan didukung interpretasi SHAP."
-    )
 
     col1, col2, col3 = st.columns(3)
     with col1:
