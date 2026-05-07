@@ -321,51 +321,37 @@ st.markdown("""
     font-size: 15px;
 }
 
-/* Paksa komponen radio memenuhi lebar halaman */
-div[data-testid="stRadio"] {
-    width: 100%;
-}
-
 /* Hilangkan label radio */
 div[data-testid="stRadio"] > label {
     display: none;
 }
 
-/* Wrapper radio dibuat center */
-div[data-testid="stRadio"] > div {
-    width: 100%;
-    display: flex;
-    justify-content: center !important;
-}
-
 /* Container menu */
 div[role="radiogroup"] {
     display: flex;
-    justify-content: center !important;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     background: #111827;
     border-radius: 999px;
     padding: 8px 10px;
-    width: fit-content !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-bottom: 28px !important;
+    width: fit-content;
+    margin: 0 auto 28px auto;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Sembunyikan bulatan radio */
+/* Sembunyikan lingkaran radio */
 div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     display: none;
 }
 
-/* Tampilan tombol menu */
+/* Button menu */
 div[data-testid="stRadio"] label[data-baseweb="radio"] {
     margin: 0 !important;
     background: #1f2937;
     border-radius: 999px;
     padding: 9px 18px;
-    min-width: 170px;
+    min-width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -402,13 +388,16 @@ Prediksi Churn Nasabah Kartu Kredit Menggunakan Algoritma Catboost Dengan Bayesi
 </p>
 """.format(THRESHOLD), unsafe_allow_html=True)
 
-menu = st.radio(
-    "Menu",
-    ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
-    index=0,
-    horizontal=True,
-    label_visibility="collapsed"
-)
+left_col, center_col, right_col = st.columns([1, 3, 1])
+
+with center_col:
+    menu = st.radio(
+        "Menu",
+        ["Beranda", "Informasi Dataset", "Prediksi Manual", "Prediksi Batch CSV"],
+        index=0,
+        horizontal=True,
+        label_visibility="collapsed"
+    )
 
 # =====================================================
 # MENU: BERANDA
