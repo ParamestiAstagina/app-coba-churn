@@ -347,9 +347,7 @@ div[data-testid="stButton"] > button[kind="primary"] {
     font-weight: 700 !important;
     padding: 12px 18px !important;
     min-height: 52px !important;
-    box-shadow:
-        inset 0 -3px 0 #ff4d5a,
-        0 0 0 2px rgba(120,174,251,0.25) !important;
+    box-shadow: 0 0 0 2px rgba(120,174,251,0.25) !important;
 }
 
 /* hover tombol aktif */
@@ -362,9 +360,7 @@ div[data-testid="stButton"] > button[kind="primary"]:hover {
 /* hilangkan outline aneh */
 div[data-testid="stButton"] > button:focus {
     outline: none !important;
-    box-shadow:
-        inset 0 -3px 0 #ff4d5a,
-        0 0 0 2px rgba(120,174,251,0.25) !important;
+    box-shadow: 0 0 0 2px rgba(120,174,251,0.25) !important;
 }
 </style>
 """, unsafe_allow_html=True)
