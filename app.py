@@ -391,6 +391,7 @@ with menu_area:
             type="primary" if st.session_state.menu == "Beranda" else "secondary"
         ):
             st.session_state.menu = "Beranda"
+            st.rerun()
 
     with c2:
         if st.button(
